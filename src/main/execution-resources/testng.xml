@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Selenium Easy Register Page Test">
+
+    <test name="Register Test">
+        <classes>
+            <class name="com.qa.selenium.tests.RegisterPageTests" />
+        </classes>
+    </test>
+</suite>
