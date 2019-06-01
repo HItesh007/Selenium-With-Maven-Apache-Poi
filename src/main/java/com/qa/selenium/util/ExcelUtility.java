@@ -15,6 +15,11 @@ public class ExcelUtility {
     private static XSSFRow xRow;
     private static XSSFCell xCell;
 
+    /**
+     * Load Excel File With Work Book
+     * @param excelFilePath Absolute File Path Of Excel File
+     * @param sheetName Sheet Name of Excel Work Book To Read
+     */
     public void LoadExcelFileForRead(String excelFilePath, String sheetName) {
 
         try {
@@ -34,6 +39,10 @@ public class ExcelUtility {
         }
     }
 
+    /**
+     * Load Excel File To Write.
+     * @param excelFilePath Absolute Excel File Path
+     */
     public void LoadExcelFileForWrite(String excelFilePath) {
 
         try {
@@ -56,6 +65,10 @@ public class ExcelUtility {
 
     }
 
+    /**
+     * Get Number Of Rows In Excel
+     * @return Number Of Rows
+     */
     public int GetTotalRows() {
         try {
 
@@ -70,6 +83,12 @@ public class ExcelUtility {
         }
     }
 
+    /**
+     * Get Cell Data Based on Row & Column Index.
+     * @param rowNum Row Index
+     * @param colNum Column Index
+     * @return Cell Value
+     */
     public String GetCellData(int rowNum, int colNum) {
         try {
 
@@ -89,6 +108,10 @@ public class ExcelUtility {
         return "";
     }
 
+    /**
+     * Get Excel Data As A Multi Dimensional Array.
+     * @return Excel data as String Array
+     */
     public String[][] GetExcelDataAsArray() {
         try {
 
@@ -136,6 +159,12 @@ public class ExcelUtility {
         }
     }
 
+    /**
+     * Set Cell Data
+     * @param rowNum Row Index
+     * @param colNum Column Index
+     * @param cellValue Value to be saved in Cell
+     */
     public void SetCellData(int rowNum, int colNum, String cellValue) {
         try {
 
