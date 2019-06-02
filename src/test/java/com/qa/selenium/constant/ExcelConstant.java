@@ -14,7 +14,7 @@ public class ExcelConstant {
     public static final int WEBSITE = 8;
     public static final int HAS_HOSTING = 9;
     public static final int PROJECT_DESCRIPTION = 10;
-    public static final int TEST_STATUS = 11;
+    public static final int READ_STATUS = 11;
 
     // Excel File Details
     public static final String TEST_DATA_DIR_PATH = "/src/test/test-data/";

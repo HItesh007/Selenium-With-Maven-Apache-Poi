@@ -10,6 +10,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class RegisterPageTests extends TestBase {
 
@@ -21,11 +23,14 @@ public class RegisterPageTests extends TestBase {
 
     @DataProvider
     public Object[][] getExcelData() {
-        ExcelUtility xlUtil = new ExcelUtility();
 
-        xlUtil.LoadExcelFileForRead(USER_DIRECTORY
+        String xlsFilePath = USER_DIRECTORY
                 + ExcelConstant.TEST_DATA_DIR_PATH
-                + ExcelConstant.REGISTER_DATA_FILE_NAME_DP, ExcelConstant.USER_DATA_SHEET);
+                + ExcelConstant.REGISTER_DATA_FILE_NAME_DP;
+
+        ExcelUtility xlUtil = new ExcelUtility(xlsFilePath);
+
+        xlUtil.LoadExcelFileForRead(ExcelConstant.USER_DATA_SHEET);
 
         return xlUtil.GetExcelDataAsArray();
     }
@@ -37,7 +42,7 @@ public class RegisterPageTests extends TestBase {
     }
 
     @Test(priority = 0, testName = "Register User - With Data Provider", dataProvider = "getExcelData")
-    public void RegisterUserUsingDataProvider(String firstName, String lastName) throws InterruptedException {
+    public void RegisterUserUsingDataProvider(String firstName, String lastName, String testStatus) throws InterruptedException {
         regPageAction.EnterFirstName(firstName);
         regPageAction.EnterLastName(lastName);
         Thread.sleep(500);
@@ -45,11 +50,13 @@ public class RegisterPageTests extends TestBase {
 
     @Test(priority = 1, testName = "Register User - Without Data Provider")
     public void RegisterUserWithoutDataProvider() {
-        ExcelUtility xlUtil = new ExcelUtility();
-
-        xlUtil.LoadExcelFileForRead(USER_DIRECTORY
+        String xlsFilePath = USER_DIRECTORY
                 + ExcelConstant.TEST_DATA_DIR_PATH
-                + ExcelConstant.REGISTER_DATA_FILE_NAME, ExcelConstant.USER_DATA_SHEET);
+                + ExcelConstant.REGISTER_DATA_FILE_NAME;
+
+        ExcelUtility xlUtil = new ExcelUtility(xlsFilePath);
+
+        xlUtil.LoadExcelFileForRead(ExcelConstant.USER_DATA_SHEET);
 
         for(int i=1; i<= 100; i++) {
 
@@ -60,7 +67,11 @@ public class RegisterPageTests extends TestBase {
             regPageAction.EnterFirstName(firstName);
             regPageAction.EnterLastName(lastName);
             regPageAction.SelectState(state);
+
+            xlUtil.SetCellData(i, ExcelConstant.READ_STATUS, "Read At_" + new Date().getTime());
         }
+
+        xlUtil.WriteDataToExcel();
 
     }
 

@@ -14,20 +14,27 @@ public class ExcelUtility {
     private static XSSFSheet xSheet;
     private static XSSFRow xRow;
     private static XSSFCell xCell;
+    private static String xlsFilePath;
+
+
+    public ExcelUtility(String excelFilePath) {
+        this.xlsFilePath = excelFilePath;
+    }
 
     // Apache POI API Reference : https://poi.apache.org/apidocs/dev/index.html?org/apache
 
+
+
     /**
      * Load Excel File With Work Book
-     * @param excelFilePath Absolute File Path Of Excel File
      * @param sheetName Sheet Name of Excel Work Book To Read
      */
-    public void LoadExcelFileForRead(String excelFilePath, String sheetName) {
+    public void LoadExcelFileForRead(String sheetName) {
 
         try {
 
             // Load File as Input Stream
-            FileInputStream xlsInputStream = new FileInputStream(excelFilePath);
+            FileInputStream xlsInputStream = new FileInputStream(xlsFilePath);
 
             // Load WorkBook
             xBook = new XSSFWorkbook(xlsInputStream);
@@ -42,15 +49,14 @@ public class ExcelUtility {
     }
 
     /**
-     * Load Excel File To Write.
-     * @param excelFilePath Absolute Excel File Path
+     * Write Data To Excel.
      */
-    public void LoadExcelFileForWrite(String excelFilePath) {
+    public void WriteDataToExcel() {
 
         try {
 
             // File output stream
-            FileOutputStream fOut = new FileOutputStream(excelFilePath);
+            FileOutputStream fOut = new FileOutputStream(xlsFilePath);
 
             // Write Data to XSSFBook
             xBook.write(fOut);
