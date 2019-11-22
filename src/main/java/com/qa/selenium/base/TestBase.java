@@ -3,6 +3,7 @@ package com.qa.selenium.base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,7 +38,7 @@ public class TestBase {
         try {
 
             if(browser.trim().toUpperCase().equals("CHROME")) {
-                System.setProperty("webdriver.chrome.driver", USER_DIRECTORY + "/src/main/driver/chrome/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", USER_DIRECTORY + "/src/main/driver/chrome/v78/chromedriver.exe");
 
                 driver = new ChromeDriver();
             } else if(browser.trim().toUpperCase().equals("FIREFOX")) {
